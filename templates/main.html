@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Blog - Блог</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="blog-container">
+    <h1>Блог</h1>
+    <form method="POST" action="{{ url_for('main') }}">
+      <input type="text" name="title" placeholder="Заголовок" required>
+      <textarea name="content" placeholder="Содержимое" required></textarea>
+      <button type="submit" class="btn">Добавить запись</button>
+    </form>
+    <div class="posts">
+      {% for post in posts %}
+      <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p><em>{{ post.timestamp }}</em></p>
+        <p>{{ post.content }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="{{ url_for('index') }}" class="btn">На старт</a>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
